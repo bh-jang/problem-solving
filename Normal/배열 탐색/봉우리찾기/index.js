@@ -14,10 +14,33 @@ function sol(s) {
             }
         }
     }
+    return count;
 }
 
-function bestSol(s) {
-    
+function sol2(s) {
+    let count = 0;
+    let dx = [1, -1, 0, 0];
+    let dy = [0, 0, 1, -1];
+
+    for (let i = 0; i < s.length; i++) {
+        for (let j = 0; j < s[i].length; j++) {
+            let flag = false;
+            for (let k = 0; k < 4; k++) {
+                const nx = j + dx[k];
+                const ny = i + dy[k];
+                if (nx > -1 && nx < 5 && ny > -1 && ny < 5) {
+                    if (s[i + dy[k]][j + dx[k]] >= s[i][j]) {
+                        flag = true;
+                        break;
+                    }   
+                }
+            }
+            if (flag === false) {
+                count++;
+            }
+        }
+    }
+    return count;
 }
 
 function app() {
@@ -29,6 +52,7 @@ function app() {
     [8, 7, 3, 5, 2],
   ];
   console.log(sol(arr));
+  console.log(sol2(arr));
 }
 
 app();
